@@ -116,14 +116,18 @@ library(leaflet)
 library(leaflet.extras)
 library(leafletZH)
 library(dplyr)
+require(htmlwidgets)
+require(htmltools)
 data <- data.frame(name = c("河北省", "山西", "陕西"), value = runif(3))
+backg <- htmltools::tags$style(".leaflet-container { background: #000; }" )
 leaflet() \%>\%
   leafletZH::addTilesAmap() \%>\%
   addProvinceShape(
     data = data, provinceName = "name", valueProperty = "value",
     popupProps = c("value")
   ) \%>\%
-  setView(lng = 110, lat = 40, zoom = 4)
+  setView(lng = 110, lat = 40, zoom = 4) \%>\%
+  htmlwidgets::prependContent(backg)
 
 
 # 使用adcode进行匹配,adcode可以在leafletZH::china_province中获取

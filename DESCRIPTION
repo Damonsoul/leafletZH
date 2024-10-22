@@ -12,7 +12,10 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
+    dplyr,
     geojsonsf,
+    htmltools,
+    htmlwidgets,
     leaflet,
     leaflet.extras,
     sf,
