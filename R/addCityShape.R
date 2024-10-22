@@ -43,7 +43,7 @@
 #' library(leaflet.extras)
 #' library(leafletZH)
 #' library(dplyr)
-#'
+#' library(sf)
 #' data <- data.frame(adcode = seq(110101, 110110, 1), value = runif(5))
 #' leaflet() %>%
 #'   leafletZH::addTilesAmap() %>%
@@ -70,7 +70,7 @@ addcityShape <- function(map, data, adcode = NULL, layerId = NULL, group = NULL,
                            fillOpacity = 1, opacity = 1,
                            bringToFront = TRUE, sendToBack = TRUE
                          ), legendOptions = NULL, ...) {
-  requireNamespace(sf)
+  requireNamespace("sf")
   china_city$城市 <- china_city$name
 
   if (!is.null(adcode)) {

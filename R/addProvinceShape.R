@@ -58,6 +58,7 @@
 #' library(leaflet.extras)
 #' library(leafletZH)
 #' library(dplyr)
+#' library(sf)
 #' data <- data.frame(adcode = seq(110000, 150000, 10000), value = runif(5))
 #' leaflet() %>%
 #'   leafletZH::addTilesAmap() %>%
@@ -84,7 +85,7 @@ addProvinceShape <- function(map, data, adcode = NULL, provinceName = NULL, laye
                                fillOpacity = 1, opacity = 1,
                                bringToFront = TRUE, sendToBack = TRUE
                              ), legendOptions = NULL, ...) {
-  requireNamespace(sf)
+  requireNamespace("sf")
   china_province$省份 <- china_province$name
 
   if (!is.null(adcode)) {

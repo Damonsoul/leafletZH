@@ -114,7 +114,7 @@ library(leaflet)
 library(leaflet.extras)
 library(leafletZH)
 library(dplyr)
-
+library(sf)
 data <- data.frame(adcode = seq(110101, 110110, 1), value = runif(5))
 leaflet() \%>\%
   leafletZH::addTilesAmap() \%>\%
