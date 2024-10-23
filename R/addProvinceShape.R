@@ -2,7 +2,7 @@
 #'
 #' @param map The leaflet map object to add the layer to.
 #' @param data A data frame containing the data to be visualized.
-#' @param adcode 中国行政区划代码
+#' @param adcode China administrative division code
 #' @param provinceName A string specifying the column name in the data frame that corresponds to the province names.
 #' @param layerId An optional string to identify the layer.
 #' @param group An optional string for grouping data.
@@ -33,43 +33,42 @@
 #' @param ... Additional arguments passed to other functions.
 #'
 #' @return The modified leaflet map object with the added layer.
+#' @importFrom htmltools tags
+#' @importFrom htmlwidgets prependContent
+#' @import sf
 #' @export
 #'
 #' @examples
 #'
 #'
-#' # 使用省份名称绘图，使用字段的前两个字进行匹配
+#' # Plot using province name, match using first two words of field
 #' library(leaflet)
 #' library(leaflet.extras)
 #' library(leafletZH)
-#' library(dplyr)
-#' require(htmlwidgets)
-#' require(htmltools)
 #' data <- data.frame(name = c("河北省", "山西", "陕西"), value = runif(3))
-#' backg <- htmltools::tags$style(".leaflet-container { background: #000; }" )
-#' leaflet() %>%
-#'   leafletZH::addTilesAmap() %>%
+#' backg <- htmltools::tags$style(".leaflet-container { background: #000; }")
+#' leaflet() |>
+#'   leafletZH::addTilesAmap() |>
 #'   addProvinceShape(
 #'     data = data, provinceName = "name", valueProperty = "value",
 #'     popupProps = c("value")
-#'   ) %>%
-#'   setView(lng = 110, lat = 40, zoom = 4) %>%
+#'   ) |>
+#'   setView(lng = 110, lat = 40, zoom = 4) |>
 #'   htmlwidgets::prependContent(backg)
 #'
 #'
-#' # 使用adcode进行匹配,adcode可以在leafletZH::china_province中获取
+#' # Use adcode to match, adcode can be obtained in leafletZH::china_province
 #' library(leaflet)
 #' library(leaflet.extras)
 #' library(leafletZH)
-#' library(dplyr)
 #' library(sf)
 #' data <- data.frame(adcode = seq(110000, 150000, 10000), value = runif(5))
-#' leaflet() %>%
-#'   leafletZH::addTilesAmap() %>%
+#' leaflet() |>
+#'   leafletZH::addTilesAmap() |>
 #'   addProvinceShape(
 #'     data = data, adcode = "adcode", valueProperty = "value",
 #'     popupProps = c("value")
-#'   ) %>%
+#'   ) |>
 #'   setView(lng = 110, lat = 40, zoom = 4)
 #'
 addProvinceShape <- function(map, data, adcode = NULL, provinceName = NULL, layerId = NULL, group = NULL,
@@ -90,7 +89,7 @@ addProvinceShape <- function(map, data, adcode = NULL, provinceName = NULL, laye
                                bringToFront = TRUE, sendToBack = TRUE
                              ), legendOptions = NULL, ...) {
   requireNamespace("sf")
-  china_province$省份 <- china_province$name
+
 
   if (!is.null(adcode)) {
     data["join"] <- data[adcode]
@@ -103,7 +102,7 @@ addProvinceShape <- function(map, data, adcode = NULL, provinceName = NULL, laye
       china_province$join <- substr(china_province$name, 0, 2)
       province_sf <- merge(china_province, data, by.x = "join", by.y = "join", suffixes = c("", ".y"))
     } else {
-      message("adcode 或者 provinceName 至少需要输入一个")
+      message("adcode or provinceName is must")
     }
   }
 
@@ -118,7 +117,7 @@ addProvinceShape <- function(map, data, adcode = NULL, provinceName = NULL, laye
   table.attrs <- list(class = "table table-striped table-bordered")
   if (!is.null(popupProps) && length(popupProps) >= 1) {
     popupProperty <- leaflet::JS(sprintf(
-      "function(feature){\n         return '<table%s><caption>详细信息</caption><tbody style=\"font-size:x-small\">' +\n      ( $.isEmptyObject(feature.properties) ? '' :\n             L.Util.template(\"%s\",feature.properties)\n           )  + \"</tbody></table>\";\n       }",
+      "function(feature){\n         return '<table%s><tbody style=\"font-size:x-small\">' +\n      ( $.isEmptyObject(feature.properties) ? '' :\n             L.Util.template(\"%s\",feature.properties)\n           )  + \"</tbody></table>\";\n       }",
       if (!is.null(table.attrs)) {
         paste(sapply(names(table.attrs), function(attr) {
           sprintf(
@@ -129,7 +128,7 @@ addProvinceShape <- function(map, data, adcode = NULL, provinceName = NULL, laye
       } else {
         ""
       },
-      paste("<tr><td><b>省份</b></td><td>{name}</td></tr>",
+      paste("<tr><td>{name}</td></tr>",
         paste(
           stringr::str_replace(
             popupProps, "(.*)",

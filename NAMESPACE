@@ -3,3 +3,6 @@
 export(addProvinceShape)
 export(addTilesAmap)
 export(addcityShape)
+import(sf)
+importFrom(htmltools,tags)
+importFrom(htmlwidgets,prependContent)

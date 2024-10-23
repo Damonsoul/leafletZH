@@ -43,7 +43,7 @@ addcityShape(
 
 \item{data}{A data frame containing the data to be visualized.}
 
-\item{adcode}{中国行政区划代码}
+\item{adcode}{China administrative division code}
 
 \item{layerId}{An optional string to identify the layer.}
 
@@ -109,19 +109,18 @@ Title: Adds a choropleth map layer for citys with additional customization optio
 
 
 
-# 使用adcode进行匹配,adcode可以在leafletZH::china_city中获取
+# use adcode,adcode can be obtained from leafletZH::china_city
 library(leaflet)
 library(leaflet.extras)
 library(leafletZH)
-library(dplyr)
 library(sf)
 data <- data.frame(adcode = seq(110101, 110110, 1), value = runif(5))
-leaflet() \%>\%
-  leafletZH::addTilesAmap() \%>\%
+leaflet() |>
+  leafletZH::addTilesAmap() |>
   addcityShape(
     data = data, adcode = "adcode", valueProperty = "value",
     popupProps = c("value")
-  ) \%>\%
+  ) |>
   setView(lng = 116, lat = 40, zoom = 8)
 
 }

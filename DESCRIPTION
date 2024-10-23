@@ -1,10 +1,12 @@
 Package: leafletZH
 Type: Package
-Title: Adds a Chinese choropleth leaflet map
+Title: Adds a Chinese Choropleth Leaflet Map
 Version: 0.1.0
-Author: Damonsoul
+Authors@R: person(family = "Damonsoul",
+                     role = c("aut", "cre"),
+                     email = "chenmaowei96@gmail.com")
 Maintainer: Damonsoul <chenmaowei96@gmail.com>
-Description: This package provides 'sf' data for Chinese provinces and cities,
+Description: Provides 'sf' data for Chinese provinces and cities,
   methods for plotting shape maps of Chinese provinces and cities,
   and a layer for 'leaflet' with Gaode tiles.
   It is designed to facilitate geographical data visualization in China.
@@ -12,7 +14,6 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    dplyr,
     geojsonsf,
     htmltools,
     htmlwidgets,
@@ -22,4 +23,4 @@ Imports:
     stringr
 RoxygenNote: 7.3.2
 Depends: 
-    R (>= 2.10)
+    R (>= 4.0.0)

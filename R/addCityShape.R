@@ -2,7 +2,7 @@
 #'
 #' @param map The leaflet map object to add the layer to.
 #' @param data A data frame containing the data to be visualized.
-#' @param adcode 中国行政区划代码
+#' @param adcode China administrative division code
 #' @param layerId An optional string to identify the layer.
 #' @param group An optional string for grouping data.
 #' @param valueProperty The property in the geojson data that corresponds to the value to be mapped.
@@ -30,27 +30,26 @@
 #' @param highlightOptions Options for highlighting features, defaults to leaflet's highlightOptions.
 #' @param legendOptions Options for the legend.
 #' @param ... Additional arguments passed to other functions.
-#'
 #' @return The modified leaflet map object with the added layer.
+#' @import sf
 #' @export
 #'
 #' @examples
 #'
 #'
 #'
-#' # 使用adcode进行匹配,adcode可以在leafletZH::china_city中获取
+#' # use adcode,adcode can be obtained from leafletZH::china_city
 #' library(leaflet)
 #' library(leaflet.extras)
 #' library(leafletZH)
-#' library(dplyr)
 #' library(sf)
 #' data <- data.frame(adcode = seq(110101, 110110, 1), value = runif(5))
-#' leaflet() %>%
-#'   leafletZH::addTilesAmap() %>%
+#' leaflet() |>
+#'   leafletZH::addTilesAmap() |>
 #'   addcityShape(
 #'     data = data, adcode = "adcode", valueProperty = "value",
 #'     popupProps = c("value")
-#'   ) %>%
+#'   ) |>
 #'   setView(lng = 116, lat = 40, zoom = 8)
 #'
 addcityShape <- function(map, data, adcode = NULL, layerId = NULL, group = NULL,
@@ -71,7 +70,7 @@ addcityShape <- function(map, data, adcode = NULL, layerId = NULL, group = NULL,
                            bringToFront = TRUE, sendToBack = TRUE
                          ), legendOptions = NULL, ...) {
   requireNamespace("sf")
-  china_city$城市 <- china_city$name
+
 
   if (!is.null(adcode)) {
     data["join"] <- data[adcode]
@@ -79,7 +78,7 @@ addcityShape <- function(map, data, adcode = NULL, layerId = NULL, group = NULL,
 
     city_sf <- merge(china_city, data, by.x = "join", by.y = "join", suffixes = c("", ".y"))
   } else {
-    message("必须使用adcode，adcode可以从leafletZH::china_city中获取")
+    message("Adcode is must, adcode can be obtained from leafletZH::china_city")
   }
 
 
@@ -93,7 +92,7 @@ addcityShape <- function(map, data, adcode = NULL, layerId = NULL, group = NULL,
   table.attrs <- list(class = "table table-striped table-bordered")
   if (!is.null(popupProps) && length(popupProps) >= 1) {
     popupProperty <- leaflet::JS(sprintf(
-      "function(feature){\n         return '<table%s><caption>详细信息</caption><tbody style=\"font-size:x-small\">' +\n      ( $.isEmptyObject(feature.properties) ? '' :\n             L.Util.template(\"%s\",feature.properties)\n           )  + \"</tbody></table>\";\n       }",
+      "function(feature){\n         return '<table%s><tbody style=\"font-size:x-small\">' +\n      ( $.isEmptyObject(feature.properties) ? '' :\n             L.Util.template(\"%s\",feature.properties)\n           )  + \"</tbody></table>\";\n       }",
       if (!is.null(table.attrs)) {
         paste(sapply(names(table.attrs), function(attr) {
           sprintf(
@@ -104,7 +103,7 @@ addcityShape <- function(map, data, adcode = NULL, layerId = NULL, group = NULL,
       } else {
         ""
       },
-      paste("<tr><td><b>城市</b></td><td>{name}</td></tr>",
+      paste("<tr><td>{name}</td></tr>",
         paste(
           stringr::str_replace(
             popupProps, "(.*)",

@@ -44,7 +44,7 @@ addProvinceShape(
 
 \item{data}{A data frame containing the data to be visualized.}
 
-\item{adcode}{中国行政区划代码}
+\item{adcode}{China administrative division code}
 
 \item{provinceName}{A string specifying the column name in the data frame that corresponds to the province names.}
 
@@ -111,38 +111,34 @@ Title: Adds a choropleth map layer for provinces with additional customization o
 \examples{
 
 
-# 使用省份名称绘图，使用字段的前两个字进行匹配
+# Plot using province name, match using first two words of field
 library(leaflet)
 library(leaflet.extras)
 library(leafletZH)
-library(dplyr)
-require(htmlwidgets)
-require(htmltools)
 data <- data.frame(name = c("河北省", "山西", "陕西"), value = runif(3))
-backg <- htmltools::tags$style(".leaflet-container { background: #000; }" )
-leaflet() \%>\%
-  leafletZH::addTilesAmap() \%>\%
+backg <- htmltools::tags$style(".leaflet-container { background: #000; }")
+leaflet() |>
+  leafletZH::addTilesAmap() |>
   addProvinceShape(
     data = data, provinceName = "name", valueProperty = "value",
     popupProps = c("value")
-  ) \%>\%
-  setView(lng = 110, lat = 40, zoom = 4) \%>\%
+  ) |>
+  setView(lng = 110, lat = 40, zoom = 4) |>
   htmlwidgets::prependContent(backg)
 
 
-# 使用adcode进行匹配,adcode可以在leafletZH::china_province中获取
+# Use adcode to match, adcode can be obtained in leafletZH::china_province
 library(leaflet)
 library(leaflet.extras)
 library(leafletZH)
-library(dplyr)
 library(sf)
 data <- data.frame(adcode = seq(110000, 150000, 10000), value = runif(5))
-leaflet() \%>\%
-  leafletZH::addTilesAmap() \%>\%
+leaflet() |>
+  leafletZH::addTilesAmap() |>
   addProvinceShape(
     data = data, adcode = "adcode", valueProperty = "value",
     popupProps = c("value")
-  ) \%>\%
+  ) |>
   setView(lng = 110, lat = 40, zoom = 4)
 
 }
