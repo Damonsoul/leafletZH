@@ -1,4 +1,4 @@
-#' Title: Adds a choropleth map layer for citys with additional customization options.
+#' Adds a choropleth map layer for citys with additional customization options.
 #'
 #' @param map The leaflet map object to add the layer to.
 #' @param data A data frame containing the data to be visualized.

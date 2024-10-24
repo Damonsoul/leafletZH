@@ -1,4 +1,4 @@
-#' Title: Adds a choropleth map layer for provinces with additional customization options.
+#' Adds a choropleth map layer for provinces with additional customization options.
 #'
 #' @param map The leaflet map object to add the layer to.
 #' @param data A data frame containing the data to be visualized.
@@ -45,10 +45,9 @@
 #' library(leaflet)
 #' library(leaflet.extras)
 #' library(leafletZH)
-#' data <- data.frame(name = c("河北省", "山西", "陕西"), value = runif(3))
+#' data <- data.frame(name = leafletZH::china_province$name, value = runif(34))
 #' backg <- htmltools::tags$style(".leaflet-container { background: #000; }")
 #' leaflet() |>
-#'   leafletZH::addTilesAmap() |>
 #'   addProvinceShape(
 #'     data = data, provinceName = "name", valueProperty = "value",
 #'     popupProps = c("value")

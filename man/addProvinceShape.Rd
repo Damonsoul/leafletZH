@@ -2,7 +2,7 @@
 % Please edit documentation in R/addProvinceShape.R
 \name{addProvinceShape}
 \alias{addProvinceShape}
-\title{Title: Adds a choropleth map layer for provinces with additional customization options.}
+\title{Adds a choropleth map layer for provinces with additional customization options.}
 \usage{
 addProvinceShape(
   map,
@@ -106,7 +106,7 @@ addProvinceShape(
 The modified leaflet map object with the added layer.
 }
 \description{
-Title: Adds a choropleth map layer for provinces with additional customization options.
+Adds a choropleth map layer for provinces with additional customization options.
 }
 \examples{
 
@@ -115,10 +115,9 @@ Title: Adds a choropleth map layer for provinces with additional customization o
 library(leaflet)
 library(leaflet.extras)
 library(leafletZH)
-data <- data.frame(name = c("河北省", "山西", "陕西"), value = runif(3))
+data <- data.frame(name = leafletZH::china_province$name, value = runif(34))
 backg <- htmltools::tags$style(".leaflet-container { background: #000; }")
 leaflet() |>
-  leafletZH::addTilesAmap() |>
   addProvinceShape(
     data = data, provinceName = "name", valueProperty = "value",
     popupProps = c("value")

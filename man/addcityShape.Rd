@@ -2,7 +2,7 @@
 % Please edit documentation in R/addCityShape.R
 \name{addcityShape}
 \alias{addcityShape}
-\title{Title: Adds a choropleth map layer for citys with additional customization options.}
+\title{Adds a choropleth map layer for citys with additional customization options.}
 \usage{
 addcityShape(
   map,
@@ -103,7 +103,7 @@ addcityShape(
 The modified leaflet map object with the added layer.
 }
 \description{
-Title: Adds a choropleth map layer for citys with additional customization options.
+Adds a choropleth map layer for citys with additional customization options.
 }
 \examples{
 
