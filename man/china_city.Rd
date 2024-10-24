@@ -12,7 +12,7 @@ china_city
 }
 \description{
 city data for china
-source： http://datav.aliyun.com/tools/atlas/
+source: http://datav.aliyun.com/tools/atlas/
 
 \describe{
   \item{name}{city name}

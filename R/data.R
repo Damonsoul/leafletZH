@@ -1,7 +1,7 @@
 #' province
 #' @description
 #' province data for china
-#' source： http://datav.aliyun.com/tools/atlas/
+#' source: http://datav.aliyun.com/tools/atlas/
 #'
 #' \describe{
 #'   \item{name}{province name}
@@ -16,7 +16,7 @@
 #' city
 #' @description
 #' city data for china
-#' source： http://datav.aliyun.com/tools/atlas/
+#' source: http://datav.aliyun.com/tools/atlas/
 #'
 #' \describe{
 #'   \item{name}{city name}
