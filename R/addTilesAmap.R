@@ -1,4 +1,4 @@
-#' Adds a tile layer from Amap (高德地图) to a leaflet map.
+#' Adds a tile layer from Amap to a leaflet map.
 #'
 #' This function adds a tile layer from Amap to a leaflet map object.
 #'

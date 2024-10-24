@@ -2,7 +2,7 @@
 % Please edit documentation in R/addTilesAmap.R
 \name{addTilesAmap}
 \alias{addTilesAmap}
-\title{Adds a tile layer from Amap (高德地图) to a leaflet map.}
+\title{Adds a tile layer from Amap to a leaflet map.}
 \usage{
 addTilesAmap(
   map,
