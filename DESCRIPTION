@@ -19,8 +19,19 @@ Imports:
     htmlwidgets,
     leaflet,
     leaflet.extras,
+    Rcpp,
     sf,
     stringr
 RoxygenNote: 7.3.2
 Depends: 
     R (>= 4.0.0)
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo
+URL: https://damonsoul.github.io/leafletZH/
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
