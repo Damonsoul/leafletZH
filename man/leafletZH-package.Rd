@@ -8,6 +8,13 @@
 \description{
 Provides 'sf' data for Chinese provinces and cities, methods for plotting shape maps of Chinese provinces and cities, and a layer for 'leaflet' with Gaode tiles. It is designed to facilitate geographical data visualization in China.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://damonsoul.github.io/leafletZH/}
+}
+
+}
 \author{
 \strong{Maintainer}:  Damonsoul \email{chenmaowei96@gmail.com}
 
