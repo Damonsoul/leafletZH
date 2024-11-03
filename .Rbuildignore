@@ -3,3 +3,9 @@
 ^LICENSE\.md$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^README\.qmd$
+^README\.markdown_github_files$
+^\.github$
