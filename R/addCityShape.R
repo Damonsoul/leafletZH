@@ -46,13 +46,13 @@
 #' data <- data.frame(adcode = seq(110101, 110110, 1), value = runif(5))
 #' leaflet() |>
 #'   leafletZH::addTilesAmap() |>
-#'   addcityShape(
+#'   addCityShape(
 #'     data = data, adcode = "adcode", valueProperty = "value",
 #'     popupProps = c("value")
 #'   ) |>
 #'   setView(lng = 116, lat = 40, zoom = 8)
 #'
-addcityShape <- function(map, data, adcode = NULL, layerId = NULL, group = NULL,
+addCityShape <- function(map, data, adcode = NULL, layerId = NULL, group = NULL,
                          valueProperty = NULL,
                          labelProperty = NULL, labelOptions = leaflet::labelOptions(),
                          popupProps = NULL, popupOptions = leaflet::popupOptions(),
