@@ -3,6 +3,7 @@
 export(addCityShape)
 export(addProvinceShape)
 export(addTilesAmap)
+export(areaCalculator)
 export(convertCoordinates)
 import(sf)
 importFrom(Rcpp,sourceCpp)
