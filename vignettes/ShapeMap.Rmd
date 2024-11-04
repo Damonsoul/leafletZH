@@ -34,8 +34,8 @@ This package provides functions to add shape map layers for Chinese cities and p
 ```{r}
 library(leaflet)
 library(leafletZH)
-leaflet() %>%
-  addTilesAmap() %>%
+leaflet() |>
+  addTilesAmap() |>
   setView(lng = 120.33739, lat = 31.13533, zoom = 3)
 ```
 
@@ -79,22 +79,21 @@ leaflet() |>
   setView(lng = 110, lat = 40, zoom = 3)
 ```
 
-
+You don't need then full name of province, `addProvinceShape` only use the first two word of province name to match.
 
 ```{r}         
 library(leaflet)
 library(leaflet.extras)
 library(leafletZH)
-library(dplyr)
 data <- data.frame(name = c("河北省", "山西", "陕西"), value = runif(3))
-leaflet() %>%
-  leafletZH::addTilesAmap() %>%
+leaflet() |>
+  leafletZH::addTilesAmap() |>
   addProvinceShape(
     data = data,
     provinceName = "name",
     valueProperty = "value",
     popupProps = c("value")
-  ) %>%
+  ) |>
   setView(lng = 110, lat = 40, zoom = 4)
 ```
 
