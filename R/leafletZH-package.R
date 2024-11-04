@@ -2,6 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @importFrom grDevices chull
 #' @importFrom Rcpp sourceCpp
 #' @useDynLib leafletZH, .registration = TRUE
 ## usethis namespace: end
