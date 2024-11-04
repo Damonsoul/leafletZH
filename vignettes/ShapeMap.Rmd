@@ -1,5 +1,5 @@
 ---
-title: "ShapeMap"
+title: "addShapeMap"
 output: rmarkdown::html_vignette
 
 vignette: >
