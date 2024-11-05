@@ -24,7 +24,9 @@ This function adds a polygon area to a given map using the specified latitude an
 \examples{
 library(leaflet)
 m <- leaflet() \%>\% addTilesAmap()
-m <- addAreaPolygons(m, longitude = c(116.404, 116.407, 116.409),
-  latitude = c(39.916, 39.919, 39.917), coordinate = "WGS-84")
+m <- addAreaPolygons(m,
+  longitude = c(31.1, 39.919, 39.917),
+  latitude = c(121.0, 121.1, 121.2), coordinate = "WGS-84"
+)
 m
 }
