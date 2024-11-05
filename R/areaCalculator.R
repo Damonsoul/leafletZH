@@ -14,8 +14,8 @@
 #'
 #' @examples
 #' area <- areaCalculator(
-#'   latitude = c(31.1, 39.919, 39.917),
-#'   longitude = c(121.0, 121.1, 121.2), coordinate = "WGS-84"
+#'   longitude = c(121.0, 122.1, 121.2, 122.15, 121.2),
+#'   latitude =  c(31.1, 31.919, 31.917, 31.15, 31.12), coordinate = "WGS-84"
 #' )
 areaCalculator <- function(longitude,
                            latitude,
