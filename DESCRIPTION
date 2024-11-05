@@ -23,6 +23,7 @@ Imports:
     leaflet.extras,
     purrr,
     Rcpp,
+    scales,
     sf,
     stringr
 RoxygenNote: 7.3.2

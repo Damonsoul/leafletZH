@@ -14,8 +14,8 @@
 #' library(leaflet)
 #' m <- leaflet() %>% addTilesAmap()
 #' m <- addAreaPolygons(m,
-#'   longitude = c(31.1, 39.919, 39.917),
-#'   latitude = c(121.0, 121.1, 121.2), coordinate = "WGS-84"
+#'   longitude = c(121.0, 122.1, 121.2, 122.15, 121.2),
+#'   latitude =  c(31.1, 31.919, 31.917, 31.15, 31.12), coordinate = "WGS-84"
 #' )
 #' m
 addAreaPolygons <- function(map, longitude, latitude, coordinate = "WGS-84") {
@@ -56,11 +56,15 @@ addAreaPolygons <- function(map, longitude, latitude, coordinate = "WGS-84") {
   hull_data <- data[hull_index, ]
 
   # Add polygons to the map
+  area <- round(areaCalculator(longitude, latitude, coordinate, chull = TRUE), 0)
+
+
   map <- leaflet::addPolygons(map,
     lng = hull_data$longitude,
     lat = hull_data$latitude,
     fillOpacity = 0.5,
-    color = "blue"
+    color = "blue",
+    label = htmltools::HTML(paste("Area: ", scales::comma(area), " m<sup>2</sup>", sep = ""))
   )
 
   return(map)
