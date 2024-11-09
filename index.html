@@ -5,14 +5,19 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Adds a Chinese Choropleth Leaflet Map • leafletZH</title>
+<title>Chinese Leaflet Map Relate Operation • leafletZH</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Adds a Chinese Choropleth Leaflet Map">
-<meta name="description" content="Provides sf data for Chinese provinces and cities, methods for plotting shape maps of Chinese provinces and cities, and a layer for leaflet with Gaode tiles. It is designed to facilitate geographical data visualization in China.">
-<meta property="og:description" content="Provides sf data for Chinese provinces and cities, methods for plotting shape maps of Chinese provinces and cities, and a layer for leaflet with Gaode tiles. It is designed to facilitate geographical data visualization in China.">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Chinese Leaflet Map Relate Operation">
+<meta name="description" content="Provides sf data for Chinese provinces and cities, methods for plotting shape maps of Chinese provinces and cities, Convert Coordinates Between Different Systems, and a layer for leaflet with Gaode tiles. It is designed to facilitate geographical data visualization in China.">
+<meta property="og:description" content="Provides sf data for Chinese provinces and cities, methods for plotting shape maps of Chinese provinces and cities, Convert Coordinates Between Different Systems, and a layer for leaflet with Gaode tiles. It is designed to facilitate geographical data visualization in China.">
+<!-- See https://stackoverflow.com/questions/1865837/whats-the-difference-between-window-location-and-window-location-replace — we use .replace() because we don't want the old url to appear in the browser history. --><script>
+  if (!/(\/|html?)$/.test(window.location.href)){
+    window.location.replace(window.location.href + '/');
+  }
+</script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -52,128 +57,50 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="readme-leaflet-map-layers-for-chinese-administrative-regions">README: Leaflet Map Layers for Chinese Administrative Regions<a class="anchor" aria-label="anchor" href="#readme-leaflet-map-layers-for-chinese-administrative-regions"></a>
+<div class="page-header"><h1 id="readme">README<a class="anchor" aria-label="anchor" href="#readme"></a>
 </h1></div>
-<div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
-</h2>
-<p>This package provides functions to add choropleth map layers for Chinese cities and provinces to a Leaflet map object. These layers can be customized with various options such as color scales, labels, and popups.</p>
-</div>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">'Damonsoul/leafletZH'</span><span class="op">)</span></span></code></pre>
-</div>
-<div class="section level2">
-<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
-</h2>
 <div class="section level3">
-<h3 id="adding-a-city-layer">Adding a City Layer<a class="anchor" aria-label="anchor" href="#adding-a-city-layer"></a>
+<h3 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h3>
-<p>To add a choropleth map layer for cities, use the addcityShape function. You will need a data frame containing the data to be visualized, including the Chinese administrative division codes (adcode).</p>
-<pre><code>library(leaflet) library(leaflet.extras) library(leafletZH) library(dplyr)  data &lt;- data.frame(adcode = seq(110101, 110110, 1), value = runif(5)) leaflet() %&gt;%   leafletZH::addTilesAmap() %&gt;%   addcityShape(
-  data = data,
-  adcode = "adcode",
-  valueProperty = "value",
-  popupProps = c("value")
-) %&gt;%   setView(lng = 116, lat = 40, zoom = 8)</code></pre>
+<p>leafletZH provides mapping functionalities, including adding area polygons, customizable choropleth layers for cities and provinces, and Amap tile layers. It features tools for calculating polygon areas, along with datasets for Chinese cities and provinces, and coordinate conversion between different systems.</p>
 </div>
 <div class="section level3">
-<h3 id="adding-a-province-layer">Adding a Province Layer<a class="anchor" aria-label="anchor" href="#adding-a-province-layer"></a>
+<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
-<p>To add a choropleth map layer for provinces, use the addProvinceShape function. Similar to the city layer, you will need a data frame containing the data to be visualized.</p>
-<pre><code>library(leaflet) library(leaflet.extras) library(leafletZH) library(dplyr)  data &lt;- data.frame(name = c("河北省", "山西", "陕西"), value = runif(3)) leaflet() %&gt;%   leafletZH::addTilesAmap() %&gt;%   addProvinceShape(
-  data = data,
-  provinceName = "name",
-  valueProperty = "value",
-  popupProps = c("value")
-) %&gt;%   setView(lng = 110, lat = 40, zoom = 4)</code></pre>
+<p>You can install this package from CRAN, or the development version from GitHub:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># CRAN version</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'leafletZH'</span><span class="op">)</span></span>
+<span><span class="co"># Or Github version</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">'devtools'</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'devtools'</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">'Damonsoul/leafletZH'</span><span class="op">)</span></span></code></pre></div>
 </div>
+<div class="section level3">
+<h3 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+</h3>
+<p>Docs and examples at: <a href="https://damonsoul.github.io/leafletZH/" class="uri">https://damonsoul.github.io/leafletZH/</a></p>
 </div>
-<div class="section level2">
-<h2 id="data-sources">Data Sources<a class="anchor" aria-label="anchor" href="#data-sources"></a>
-</h2>
+<div class="section level3">
+<h3 id="data-sources">Data Sources<a class="anchor" aria-label="anchor" href="#data-sources"></a>
+</h3>
 <p>The province and city data are sourced from <a href="http://datav.aliyun.com/tools/atlas/" class="external-link">Aliyun DataV Atlas</a>.</p>
 </div>
-<div class="section level2">
-<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
-</h2>
+<div class="section level3">
+<h3 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h3>
 <p>This package is released under the MIT license. Please see the LICENSE file for more details.</p>
 </div>
-<div class="section level2">
-<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
-</h2>
+<div class="section level3">
+<h3 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h3>
 <p>Contributions are welcome! Please submit a pull request or open an issue on the GitHub repository.</p>
 </div>
-<div class="section level2">
-<h2 id="authors">Authors<a class="anchor" aria-label="anchor" href="#authors"></a>
-</h2>
+<div class="section level3">
+<h3 id="authors">Authors<a class="anchor" aria-label="anchor" href="#authors"></a>
+</h3>
 <p>This package was created by <a href="https://github.com/Damonsoul" class="external-link">Damonsoul</a>.</p>
 </div>
 </div>
-<div class="section level1">
-<h1 id="readme中国行政区划的leaflet地图图层">README：中国行政区划的Leaflet地图图层<a class="anchor" aria-label="anchor" href="#readme%E4%B8%AD%E5%9B%BD%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92%E7%9A%84leaflet%E5%9C%B0%E5%9B%BE%E5%9B%BE%E5%B1%82"></a>
-</h1>
-<div class="section level2">
-<h2 id="概述">概述<a class="anchor" aria-label="anchor" href="#%E6%A6%82%E8%BF%B0"></a>
-</h2>
-<p>该包提供了将中国城市和省份的 choropleth 地图图层添加到 Leaflet 地图对象的函数。这些图层可以通过各种选项进行自定义，例如颜色比例尺、标签和弹出窗口。</p>
-</div>
-<div class="section level2">
-<h2 id="安装">安装<a class="anchor" aria-label="anchor" href="#%E5%AE%89%E8%A3%85"></a>
-</h2>
-<p>从GitHub进行安装</p>
-<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">'Damonsoul/leafletZH'</span><span class="op">)</span></span></code></pre>
-</div>
-<div class="section level2">
-<h2 id="使用方法">使用方法<a class="anchor" aria-label="anchor" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"></a>
-</h2>
-<div class="section level3">
-<h3 id="添加城市图层">添加城市图层<a class="anchor" aria-label="anchor" href="#%E6%B7%BB%E5%8A%A0%E5%9F%8E%E5%B8%82%E5%9B%BE%E5%B1%82"></a>
-</h3>
-<p>使用 <code>addcityShape</code> 函数添加城市 形状 地图图层。需要一个包含要可视化数据的数据框，包括中国的行政区划代码（adcode）。</p>
-<pre><code>library(leaflet) library(leaflet.extras) library(leafletZH) library(dplyr)  data &lt;- data.frame(adcode = seq(110101, 110110, 1), value = runif(5)) leaflet() %&gt;%   leafletZH::addTilesAmap() %&gt;%   addcityShape(
-  data = data,
-  adcode = "adcode",
-  valueProperty = "value",
-  popupProps = c("value")
-) %&gt;%   setView(lng = 116, lat = 40, zoom = 8)</code></pre>
-</div>
-<div class="section level3">
-<h3 id="添加省份图层">添加省份图层<a class="anchor" aria-label="anchor" href="#%E6%B7%BB%E5%8A%A0%E7%9C%81%E4%BB%BD%E5%9B%BE%E5%B1%82"></a>
-</h3>
-<p>使用 <code>addProvinceShape</code> 函数要添加省份 形状 地图图层与城市图层类似，您需要一个包含要可视化数据的数据框,需要包括中国的行政区划代码（adcode）或省份名称。 省份名称使用前两个字进行匹配。</p>
-<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/" class="external-link">leaflet</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trafficonese/leaflet.extras" class="external-link">leaflet.extras</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://damonsoul.github.io/leafletZH/">leafletZH</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"河北省"</span>, <span class="st">"山西"</span>, <span class="st">"陕西"</span><span class="op">)</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html" class="external-link">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">leafletZH</span><span class="fu">::</span><span class="fu"><a href="reference/addTilesAmap.html">addTilesAmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>   <span class="fu"><a href="reference/addProvinceShape.html">addProvinceShape</a></span><span class="op">(</span></span>
-<span>    data <span class="op">=</span> <span class="va">data</span>,</span>
-<span>    provinceName <span class="op">=</span> <span class="st">"name"</span>,</span>
-<span>    valueProperty <span class="op">=</span> <span class="st">"value"</span>,</span>
-<span>    popupProps <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"value"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>   <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-methods.html" class="external-link">setView</a></span><span class="op">(</span>lng <span class="op">=</span> <span class="fl">110</span>, lat <span class="op">=</span> <span class="fl">40</span>, zoom <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre>
-</div>
-</div>
-<div class="section level2">
-<h2 id="数据来源">数据来源<a class="anchor" aria-label="anchor" href="#%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90"></a>
-</h2>
-<p>省份和城市数据来源于 <a href="http://datav.aliyun.com/tools/atlas/" class="external-link">阿里云 DataV Atlas</a>。</p>
-</div>
-<div class="section level2">
-<h2 id="许可证">许可证<a class="anchor" aria-label="anchor" href="#%E8%AE%B8%E5%8F%AF%E8%AF%81"></a>
-</h2>
-<p>该包在 MIT 许可证下发布。更多细节请参阅 LICENSE 文件。</p>
-</div>
-<div class="section level2">
-<h2 id="贡献">贡献<a class="anchor" aria-label="anchor" href="#%E8%B4%A1%E7%8C%AE"></a>
-</h2>
-<p>欢迎贡献！请在 GitHub 仓库提交拉取请求或开一个问题。</p>
-</div>
-</div>
-
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -211,7 +138,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Damonsoul.</p>
+  <p>Developed by Damonsoul. NULL</p>
 </div>
 
 <div class="pkgdown-footer-right">
