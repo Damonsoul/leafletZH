@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   ShapeMap: ShapeMap.html
-last_built: 2024-11-09T09:49Z
+last_built: 2024-11-09T10:02Z
 urls:
   reference: https://damonsoul.github.io/leafletZH/reference
   article: https://damonsoul.github.io/leafletZH/articles
