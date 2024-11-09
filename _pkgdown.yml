@@ -1,4 +1,10 @@
 url: https://damonsoul.github.io/leafletZH/
 template:
   bootstrap: 5
-
+  bslib:
+    primary: "#199900"
+    navbar-background: "#f8f8f8"
+  trailing_slash_redirect: true
+footer:
+  structure:
+    left: [developed_by, copyright]
