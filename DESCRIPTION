@@ -1,7 +1,7 @@
 Package: leafletZH
 Type: Package
 Title: Chinese Leaflet Map Relate Operation
-Version: 0.1.0.9000
+Version: 0.1.1
 Authors@R: person(family = "Damonsoul",
                      role = c("aut", "cre"),
                      email = "chenmaowei96@gmail.com")

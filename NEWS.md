@@ -1,4 +1,4 @@
-# leafletZH (development version)
+# leafletZH 0.1.1
 
 # leafletZH 0.1.0
 
