@@ -4,9 +4,9 @@
 \name{leafletZH-package}
 \alias{leafletZH}
 \alias{leafletZH-package}
-\title{leafletZH: Adds a Chinese Choropleth Leaflet Map}
+\title{leafletZH: Chinese Leaflet Map Relate Operation}
 \description{
-Provides 'sf' data for Chinese provinces and cities, methods for plotting shape maps of Chinese provinces and cities, and a layer for 'leaflet' with Gaode tiles. It is designed to facilitate geographical data visualization in China.
+Provides 'sf' data for Chinese provinces and cities, methods for plotting shape maps of Chinese provinces and cities, Convert Coordinates Between Different Systems, and a layer for 'leaflet' with Gaode tiles. It is designed to facilitate geographical data visualization in China.
 }
 \seealso{
 Useful links:
